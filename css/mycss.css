@@ -37,6 +37,7 @@ label{
 }
 
 .verticaltext {
+    margin-top: 20px;
     -ms-transform: rotate(270deg);
     -webkit-transform: rotate(270deg);
     transform: rotate(270deg);
@@ -44,5 +45,19 @@ label{
     font-family: Helvetica, arial, impact, sans-serif;
     opacity: 50%;
     font-weight: bold;
+}
+
+table {
+    border-spacing: 0;
+}
+
+td {
+    text-align: center;
+    color: white;
+    height: 30px;
+    width: 30px;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 1;
 }
 
