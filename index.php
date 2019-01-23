@@ -40,6 +40,21 @@
                 $broj++;
             }
 
+            $maxx = $x;
+            $maxy = $y;
+            $minx = $x1;
+            $miny = $y1;
+            
+            for($maxx; $minx<$maxx && $y1<$y; $maxx--) {
+                $array["$maxy-$maxx"] = $broj;
+                $broj++;
+            }
+
+            for($maxy; $miny<$maxy && $x1<$x; $maxy--) {
+                $array["$maxy-$minx"] = $broj;
+                $broj++;
+            }
+
         }
         ?>
 
