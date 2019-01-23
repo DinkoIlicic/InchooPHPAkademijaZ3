@@ -44,7 +44,7 @@
             $maxy = $y;
             $minx = $x1;
             $miny = $y1;
-            
+
             for($maxx; $minx<$maxx && $y1<$y; $maxx--) {
                 $array["$maxy-$maxx"] = $broj;
                 $broj++;
@@ -54,6 +54,17 @@
                 $array["$maxy-$minx"] = $broj;
                 $broj++;
             }
+
+            $nextx  = $x - 1;
+            $nexty  = $y - 1;
+            $nextx1 = $x1 + 1;
+            $nexty1 = $y1 + 1;
+            $nextb  = $broj;
+
+            if($nextx < $nextx1 || $nexty < $nexty1) {
+                return $array;
+            }
+            return $array += recursion($nextx, $nexty, $nextx1, $nexty1, $nextb);
 
         }
         ?>
