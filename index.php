@@ -11,11 +11,11 @@
     <div>
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
             <p>Broj redaka</p><br />
-            <input type="text" name="x"><br />
+            <input type="text" name="x" value="<?php echo $_POST['x'];?>"> <br />
 
             <p>Broj stupaca</p>
-            <input type="text" name="y"><br /><br />
-            <input type="submit" value="KREIRAJ TABLICU">
+            <input type="text" name="y" value="<?php echo $_POST['y'];?>"> <br /><br />
+            <input type ="submit" value="KREIRAJ TABLICU">
         </form>
     </div>
     <div><?php
@@ -30,12 +30,12 @@
             $minx = $x1;
             $miny = $y1;
 
-            for($minx; $minx<$maxx && $y1<$y; $minx++) {
+            for(; $minx<$maxx && $y1<$y; $minx++) {
                 $array["$miny-$minx"] = $broj;
                 $broj++;
             }
 
-            for($miny; $miny<$maxy && $x1<$x; $miny++) {
+            for(; $miny<$maxy && $x1<$x; $miny++) {
                 $array["$miny-$maxx"] = $broj;
                 $broj++;
             }
@@ -45,12 +45,12 @@
             $minx = $x1;
             $miny = $y1;
 
-            for($maxx; $minx<$maxx && $y1<$y; $maxx--) {
+            for(; $minx<$maxx && $y1<$y; $maxx--) {
                 $array["$maxy-$maxx"] = $broj;
                 $broj++;
             }
 
-            for($maxy; $miny<$maxy && $x1<$x; $maxy--) {
+            for(; $miny<$maxy && $x1<$x; $maxy--) {
                 $array["$maxy-$minx"] = $broj;
                 $broj++;
             }
@@ -64,6 +64,7 @@
             if($nextx < $nextx1 || $nexty < $nexty1) {
                 return $array;
             }
+
             return $array += recursion($nextx, $nexty, $nextx1, $nexty1, $nextb);
 
         }
