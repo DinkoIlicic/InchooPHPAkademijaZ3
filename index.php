@@ -92,9 +92,9 @@ if(isset($_POST['x']) && isset($_POST['y'])) {
         <div class="form">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <label for="y">Broj redaka</label><br/>
-                <input type="text" name="y" id="y" value="<?php echo $_POST['y']; ?>" required><br/><br/>
+                <input type="text" name="y" id="y" value="<?php if(isset($_POST['y'])) { echo $_POST['y']; }?>" required><br/><br/>
                 <label for="x">Broj stupaca</label><br/>
-                <input type="text" name="x" id="x" value="<?php echo $_POST['x']; ?>" required><br/><br/>
+                <input type="text" name="x" id="x" value="<?php if(isset($_POST['x'])) { echo $_POST['x']; }?>" required><br/><br/>
                 <input type="submit" value="KREIRAJ TABLICU" id="submit">
             </form>
         </div><?php
