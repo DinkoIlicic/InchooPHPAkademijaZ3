@@ -83,10 +83,11 @@ $array = cyclicTable($_POST['x'], $_POST['y']);
     <link rel="stylesheet" type="text/css" href="css/mycss.css"
 </head>
 <body>
-    <div>
-        <div>
+    <div class="main">
+        <div class="input">
             <p class="verticaltext">INPUT</p>
-
+        </div>
+        <div class="form">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <label for="x">Broj redaka</label><br/>
                 <input type="text" name="x" id="x" value="<?php echo $_POST['x']; ?>" required><br/><br/>
@@ -94,21 +95,23 @@ $array = cyclicTable($_POST['x'], $_POST['y']);
                 <input type="text" name="y" id="y" value="<?php echo $_POST['y']; ?>" required><br/><br/>
                 <input type="submit" value="KREIRAJ TABLICU" id="KREIRAJ TABLICU">
             </form>
-
+        </div>
+        <div class="output">
             <p class="verticaltext">OUTPUT</p>
-
+        </div>
+        <div class="table">
             <table>
                 <tbody><?php
-                    // $i represents rows in table, $j represents cell
-                    for ($i = 1; $i <= $y; $i++) { ?>
-                        <tr><?php
-                        for ($j = 1; $j <= $x; $j++) { ?>
-                            <td><?php
-                            echo $array["$i-$j"]; ?>
-                            </td><?php
-                        } ?>
-                        </tr><?php
+                // $i represents rows in table, $j represents cell
+                for ($i = 1; $i <= $y; $i++) { ?>
+                    <tr><?php
+                    for ($j = 1; $j <= $x; $j++) { ?>
+                        <td><?php
+                        echo $array["$i-$j"]; ?>
+                        </td><?php
                     } ?>
+                    </tr><?php
+                } ?>
                 </tbody>
             </table>
         </div>
