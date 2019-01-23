@@ -22,7 +22,7 @@
         $x = $_POST['x'];
         $y = $_POST['y'];
 
-        function cyclicTable($x, $y, $maxbroj, $x1=1, $y1=1, $broj=1)
+        function cyclicTable($x, $y, $x1=1, $y1=1, $broj=1)
         {
             $array = [];
             $maxx = $x;
