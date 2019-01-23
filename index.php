@@ -21,6 +21,16 @@
     <div><?php
         $x = $_POST['x'];
         $y = $_POST['y'];
+
+        function cyclicTable($x, $y, $maxbroj, $x1=1, $y1=1, $broj=1)
+        {
+            $array = [];
+            $maxx = $x;
+            $maxy = $y;
+            $minx = $x1;
+            $miny = $y1;
+
+        }
         ?>
 
     </div>
