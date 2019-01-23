@@ -94,7 +94,20 @@
         $array = cyclicTable($x,$y);
         print_r($array);
         ?>
-
+        <table>
+            <tbody><?php
+            // $i represents rows in table, $j represents cell
+            for($i = 0; $i <= $y; $i++) {?>
+                <tr><?php
+                for($j = 0; $j <= $x; $j++) {?>
+                    <td><?php
+                    echo $array["$i-$j"];?>
+                    </td><?php
+                }?>
+                </tr><?php
+            }?>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
