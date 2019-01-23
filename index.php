@@ -7,108 +7,114 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-    <div>
-        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-            <label for="x">Broj redaka</label><br />
-            <input type="text" name="x" id="x" value="<?php echo $_POST['x'];?>"><br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <label for="x">Broj redaka</label><br/>
+                    <input type="text" name="x" id="x" value="<?php echo $_POST['x']; ?>" required><br/>
 
-            <label for="y">Broj stupaca</label><br />
-            <input type="text" name="y" id="y" value="<?php echo $_POST['y'];?>"><br /><br />
-            <input type="submit" value="KREIRAJ TABLICU" id="KREIRAJ TABLICU">
-        </form>
-    </div>
-    <div><?php
-        $x = $_POST['x'];
-        $y = $_POST['y'];
+                    <label for="y">Broj stupaca</label><br/>
+                    <input type="text" name="y" id="y" value="<?php echo $_POST['y']; ?>" required><br/><br/>
+                    <input type="submit" value="KREIRAJ TABLICU" id="KREIRAJ TABLICU">
+                </form>
+            </div>
+            <div class="col-lg-9"><?php
+                $x = $_POST['x'];
+                $y = $_POST['y'];
 
-        function cyclicTable($x, $y, $x1=1, $y1=1, $broj=1, $array=[])
-        {
-            $maxx = $x;
-            $maxy = $y;
-            $minx = $x1;
-            $miny = $y1;
+                function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [])
+                {
+                    $maxx = $x;
+                    $maxy = $y;
+                    $minx = $x1;
+                    $miny = $y1;
 
-            if($minx === $maxx || $miny === $maxy) {
-                if ($minx === $miny) {
-                    $array["$miny-$minx"] = $broj;
-                    $broj++;
-                    if($maxx>$maxy) {
-                        $minx+=1;
-                    } elseif($maxx<$maxy){
-                        $miny+=1;
+                    if ($minx === $maxx || $miny === $maxy) {
+                        if ($minx === $miny) {
+                            $array["$miny-$minx"] = $broj;
+                            $broj++;
+                            if ($maxx > $maxy) {
+                                $minx += 1;
+                            } elseif ($maxx < $maxy) {
+                                $miny += 1;
+                            }
+                        }
+                        if ($minx > $miny) {
+                            for (; $minx <= $maxx; $minx++) {
+                                $array["$miny-$minx"] = $broj;
+                                $broj++;
+                            }
+                        } else if ($minx < $miny) {
+                            for (; $miny <= $maxy; $miny++) {
+                                $array["$miny-$minx"] = $broj;
+                                $broj++;
+                            }
+                        }
                     }
-                }
-                if($minx > $miny){
-                    for (; $minx <= $maxx; $minx++) {
+
+                    for (; $minx < $maxx && $y1 < $y; $minx++) {
                         $array["$miny-$minx"] = $broj;
                         $broj++;
                     }
-                } else if($minx < $miny) {
-                    for (; $miny <= $maxy; $miny++) {
-                        $array["$miny-$minx"] = $broj;
+
+                    for (; $miny < $maxy && $x1 < $x; $miny++) {
+                        $array["$miny-$maxx"] = $broj;
                         $broj++;
                     }
+
+                    $maxx = $x;
+                    $maxy = $y;
+                    $minx = $x1;
+                    $miny = $y1;
+
+                    for (; $minx < $maxx && $y1 < $y; $maxx--) {
+                        $array["$maxy-$maxx"] = $broj;
+                        $broj++;
+                    }
+
+                    for (; $miny < $maxy && $x1 < $x; $maxy--) {
+                        $array["$maxy-$minx"] = $broj;
+                        $broj++;
+                    }
+
+                    $nextx = $x - 1;
+                    $nexty = $y - 1;
+                    $nextx1 = $x1 + 1;
+                    $nexty1 = $y1 + 1;
+                    $nextb = $broj;
+
+                    if ($nextx < $nextx1 || $nexty < $nexty1) {
+                        return $array;
+                    }
+
+                    return cyclicTable($nextx, $nexty, $nextx1, $nexty1, $nextb, $array);
+
                 }
-            }
 
-            for(; $minx<$maxx && $y1<$y; $minx++) {
-                $array["$miny-$minx"] = $broj;
-                $broj++;
-            }
-
-            for(; $miny<$maxy && $x1<$x; $miny++) {
-                $array["$miny-$maxx"] = $broj;
-                $broj++;
-            }
-
-            $maxx = $x;
-            $maxy = $y;
-            $minx = $x1;
-            $miny = $y1;
-
-            for(; $minx<$maxx && $y1<$y; $maxx--) {
-                $array["$maxy-$maxx"] = $broj;
-                $broj++;
-            }
-
-            for(; $miny<$maxy && $x1<$x; $maxy--) {
-                $array["$maxy-$minx"] = $broj;
-                $broj++;
-            }
-
-            $nextx  = $x - 1;
-            $nexty  = $y - 1;
-            $nextx1 = $x1 + 1;
-            $nexty1 = $y1 + 1;
-            $nextb  = $broj;
-
-            if($nextx < $nextx1 || $nexty < $nexty1) {
-                return $array;
-            }
-
-            return cyclicTable($nextx, $nexty, $nextx1, $nexty1, $nextb, $array);
-
-        }
-
-        $array = cyclicTable($x,$y);
-        print_r($array);
-        ?>
-        <table>
-            <tbody><?php
-            // $i represents rows in table, $j represents cell
-            for($i = 0; $i <= $y; $i++) {?>
-                <tr><?php
-                for($j = 0; $j <= $x; $j++) {?>
-                    <td><?php
-                    echo $array["$i-$j"];?>
-                    </td><?php
-                }?>
-                </tr><?php
-            }?>
-            </tbody>
-        </table>
+                $array = cyclicTable($x, $y);
+                ?>
+                <table>
+                    <tbody><?php
+                    // $i represents rows in table, $j represents cell
+                    for ($i = 0; $i <= $y; $i++) { ?>
+                        <tr><?php
+                        for ($j = 0; $j <= $x; $j++) { ?>
+                            <td><?php
+                            echo $array["$i-$j"]; ?>
+                            </td><?php
+                        } ?>
+                        </tr><?php
+                    } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
