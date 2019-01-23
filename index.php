@@ -14,7 +14,7 @@
             <input type="text" name="x" id="x" value="<?php echo $_POST['x'];?>"><br />
 
             <label for="y">Broj stupaca</label><br />
-            <inputtype="text" name="y" id="y" value="<?php echo $_POST['y'];?>"><br /><br />
+            <input type="text" name="y" id="y" value="<?php echo $_POST['y'];?>"><br /><br />
             <input type="submit" value="KREIRAJ TABLICU" id="KREIRAJ TABLICU">
         </form>
     </div>
@@ -70,6 +70,7 @@
         }
 
         $array = recursion($x,$y, $x*$y);
+        print_r($array);
         ?>
 
     </div>
