@@ -67,6 +67,8 @@
             return $array += recursion($nextx, $nexty, $nextx1, $nexty1, $nextb);
 
         }
+
+        $array = recursion($x,$y, $x*$y);
         ?>
 
     </div>
