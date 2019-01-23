@@ -1,0 +1,21 @@
+body {
+    background-color:   gray;
+}
+
+input{
+    text-align: center;
+    size: 10px;
+}
+
+#x, #y{
+    color: white;
+    background-color: gray;
+    border-radius: 5px;
+    border-color: white;
+}
+
+label{
+    color: white;
+    font-size: 10px;
+}
+

@@ -8,21 +8,28 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mycss.css"
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-1">
+                <p>Input</p>
+            </div>
+            <div class="col-lg-3 form-group">
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <label for="x">Broj redaka</label><br/>
-                    <input type="text" name="x" id="x" value="<?php echo $_POST['x']; ?>" required><br/>
+                    <input type="text" class="col-lg-4" name="x" id="x" value="<?php echo $_POST['x']; ?>" required><br/><br/>
 
                     <label for="y">Broj stupaca</label><br/>
-                    <input type="text" name="y" id="y" value="<?php echo $_POST['y']; ?>" required><br/><br/>
-                    <input type="submit" value="KREIRAJ TABLICU" id="KREIRAJ TABLICU">
+                    <input type="text" class="col-lg-4" name="y" id="y" value="<?php echo $_POST['y']; ?>" required><br/><br/>
+                    <input type="submit" class="btn btn-success" value="KREIRAJ TABLICU" id="KREIRAJ TABLICU">
                 </form>
             </div>
-            <div class="col-lg-9"><?php
+            <div class="col-lg-1">
+                <p>Output</p>
+            </div>
+            <div class="col-lg-7"><?php
                 $x = $_POST['x'];
                 $y = $_POST['y'];
 
@@ -97,12 +104,12 @@
 
                 $array = cyclicTable($x, $y);
                 ?>
-                <table>
+                <table class="table table-bordered text-center">
                     <tbody><?php
                     // $i represents rows in table, $j represents cell
-                    for ($i = 0; $i <= $y; $i++) { ?>
+                    for ($i = 1; $i <= $y; $i++) { ?>
                         <tr><?php
-                        for ($j = 0; $j <= $x; $j++) { ?>
+                        for ($j = 1; $j <= $x; $j++) { ?>
                             <td><?php
                             echo $array["$i-$j"]; ?>
                             </td><?php
