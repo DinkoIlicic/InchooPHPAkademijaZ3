@@ -22,9 +22,8 @@
         $x = $_POST['x'];
         $y = $_POST['y'];
 
-        function cyclicTable($x, $y, $x1=1, $y1=1, $broj=1)
+        function cyclicTable($x, $y, $x1=1, $y1=1, $broj=1, $array=[])
         {
-            $array = [];
             $maxx = $x;
             $maxy = $y;
             $minx = $x1;
@@ -41,12 +40,12 @@
                     }
                 }
                 if($minx > $miny){
-                    for ($minx; $minx <= $maxx; $minx++) {
+                    for (; $minx <= $maxx; $minx++) {
                         $array["$miny-$minx"] = $broj;
                         $broj++;
                     }
                 } else if($minx < $miny) {
-                    for ($miny; $miny <= $maxy; $miny++) {
+                    for (; $miny <= $maxy; $miny++) {
                         $array["$miny-$minx"] = $broj;
                         $broj++;
                     }
@@ -88,11 +87,11 @@
                 return $array;
             }
 
-            return $array += recursion($nextx, $nexty, $nextx1, $nexty1, $nextb);
+            return cyclicTable($nextx, $nexty, $nextx1, $nexty1, $nextb, $array);
 
         }
 
-        $array = recursion($x,$y, $x*$y);
+        $array = cyclicTable($x,$y);
         print_r($array);
         ?>
 
