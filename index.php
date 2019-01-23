@@ -90,9 +90,9 @@ $array = cyclicTable($_POST['x'], $_POST['y']);
         <div class="form">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <label for="x">Broj redaka</label><br/>
-                <input type="text" name="x" id="x" value="<?php echo $_POST['x']; ?>" required><br/><br/>
-                <label for="y">Broj stupaca</label><br/>
                 <input type="text" name="y" id="y" value="<?php echo $_POST['y']; ?>" required><br/><br/>
+                <label for="y">Broj stupaca</label><br/>
+                <input type="text" name="x" id="x" value="<?php echo $_POST['x']; ?>" required><br/><br/>
                 <input type="submit" value="KREIRAJ TABLICU" id="KREIRAJ TABLICU">
             </form>
         </div>
@@ -103,9 +103,9 @@ $array = cyclicTable($_POST['x'], $_POST['y']);
             <table>
                 <tbody><?php
                 // $i represents rows in table, $j represents cell
-                for ($i = 1; $i <= $y; $i++) { ?>
+                for ($i = 1; $i <= $_POST['y']; $i++) { ?>
                     <tr><?php
-                    for ($j = 1; $j <= $x; $j++) { ?>
+                    for ($j = 1; $j <= $_POST['x']; $j++) { ?>
                         <td><?php
                         echo $array["$i-$j"]; ?>
                         </td><?php
