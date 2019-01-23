@@ -10,12 +10,12 @@
 <body>
     <div>
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-            <p>Broj redaka</p><br />
-            <input type="text" name="x" value="<?php echo $_POST['x'];?>"> <br />
+            <label for="x">Broj redaka</label><br />
+            <input type="text" name="x" id="x" value="<?php echo $_POST['x'];?>"><br />
 
-            <p>Broj stupaca</p>
-            <input type="text" name="y" value="<?php echo $_POST['y'];?>"> <br /><br />
-            <input type ="submit" value="KREIRAJ TABLICU">
+            <label for="y">Broj stupaca</label><br />
+            <inputtype="text" name="y" id="y" value="<?php echo $_POST['y'];?>"><br /><br />
+            <input type="submit" value="KREIRAJ TABLICU" id="KREIRAJ TABLICU">
         </form>
     </div>
     <div><?php
