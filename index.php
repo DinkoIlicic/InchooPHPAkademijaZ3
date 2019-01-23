@@ -1,5 +1,12 @@
 <?php
 
+// Whole code is made by me, DID NOT check internet for sources. Was test to see if I can do it alone
+
+
+// This is a recursive function is taking in 6 parameters, 2 are required and 4 optional
+// It will loop through outer cells and columns first and mark their locations as key ("row-column") and save their value
+// After the outer is done, it will go deeper till no more cells are unmarked
+// Array will be returned with all cells and their values
 function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [])
 {
     $maxx = $x;
@@ -98,6 +105,7 @@ if(isset($_POST['x']) && isset($_POST['y'])) {
                 <input type="submit" value="KREIRAJ TABLICU" id="submit">
             </form>
         </div><?php
+        // If POST method is fired, it will show this code
         if(isset($_POST['x']) && isset($_POST['y'])):   ?>
             <div class="output">
                 <p class="verticaltext">OUTPUT</p>
@@ -110,6 +118,10 @@ if(isset($_POST['x']) && isset($_POST['y'])) {
                         <tr><?php
                         for ($j = 1; $j <= $_POST['x']; $j++) {?>
                             <td class="td  <?php
+                                // Here we are checking for previous cell and adding line that will show from where
+                                // the current cell came
+                                // $j1 shows previous column, $j2 shows next column, $i1 shows previous row, $i2 shows next row
+                                // IF statement will go through all 4 possible position the previous cell could come from
                                 $j1 = $j - 1;
                                 $j2 = $j + 1;
                                 $i1 = $i - 1;
@@ -122,8 +134,7 @@ if(isset($_POST['x']) && isset($_POST['y'])) {
                                     echo " td3";
                                 } else if($array["$i2-$j"]-1===$array["$i-$j"]){
                                     echo " td4";
-                                }
-                            ?>
+                                }?>
                             "><?php
                                 echo $array["$i-$j"]; ?>
                             </td><?php
