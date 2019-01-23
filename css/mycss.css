@@ -1,5 +1,6 @@
 body {
     background-color:  #4c4c4c;
+    margin-top: 50px;
 }
 div{
     float:left;
@@ -8,6 +9,18 @@ div{
 input{
     text-align: center;
     size: 10px;
+    width: 100px;
+    height: 20px;
+}
+
+#submit{
+    background-color: #7ab139;
+    font-weight: bold;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
+    color: white;
 }
 
 #x, #y{
@@ -27,4 +40,9 @@ label{
     -ms-transform: rotate(270deg);
     -webkit-transform: rotate(270deg);
     transform: rotate(270deg);
+    color: #68686a;
+    font-family: Helvetica, arial, impact, sans-serif;
+    opacity: 50%;
+    font-weight: bold;
 }
+

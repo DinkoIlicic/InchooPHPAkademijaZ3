@@ -93,7 +93,7 @@ $array = cyclicTable($_POST['x'], $_POST['y']);
                 <input type="text" name="y" id="y" value="<?php echo $_POST['y']; ?>" required><br/><br/>
                 <label for="y">Broj stupaca</label><br/>
                 <input type="text" name="x" id="x" value="<?php echo $_POST['x']; ?>" required><br/><br/>
-                <input type="submit" value="KREIRAJ TABLICU" id="KREIRAJ TABLICU">
+                <input type="submit" value="KREIRAJ TABLICU" id="submit">
             </form>
         </div>
         <div class="output">
