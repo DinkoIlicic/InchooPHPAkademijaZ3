@@ -65,25 +65,25 @@ label{
 
 .td1:before {
     position:absolute;
-    left:0;
-    content: "-";
+    left:-18%;
+    content: "━";
     color: #7AB139;
     text-align: center;
 }
 
 .td2:before {
     position:absolute;
-    right:0;
-    content: "-";
+    right:-18%;
+    content: "━";
     color: #7AB139;
     text-align: center;
 }
 
 .td3:before {
     position:absolute;
-    top:-20%;
+    top:-33%;
     left:40%;
-    content: "-";
+    content: "━";
     color: #7AB139;
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
@@ -92,9 +92,9 @@ label{
 
 .td4:before {
     position:absolute;
-    bottom:-20%;
+    bottom:-33%;
     left:40%;
-    content: "-";
+    content: "━";
     color: #7AB139;
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg);

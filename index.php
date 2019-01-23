@@ -120,13 +120,6 @@ $array = cyclicTable($_POST['x'], $_POST['y']);
                             } else if($array["$i2-$j"]-1===$array["$i-$j"]){
                                 echo " td4";
                             }
-
-
-
-
-
-
-
                         ?>
                         "><?php
                             echo $array["$i-$j"]; ?>
