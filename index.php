@@ -30,6 +30,29 @@
             $minx = $x1;
             $miny = $y1;
 
+            if($minx === $maxx || $miny === $maxy) {
+                if ($minx === $miny) {
+                    $array["$miny-$minx"] = $broj;
+                    $broj++;
+                    if($maxx>$maxy) {
+                        $minx+=1;
+                    } elseif($maxx<$maxy){
+                        $miny+=1;
+                    }
+                }
+                if($minx > $miny){
+                    for ($minx; $minx <= $maxx; $minx++) {
+                        $array["$miny-$minx"] = $broj;
+                        $broj++;
+                    }
+                } else if($minx < $miny) {
+                    for ($miny; $miny <= $maxy; $miny++) {
+                        $array["$miny-$minx"] = $broj;
+                        $broj++;
+                    }
+                }
+            }
+
             for(; $minx<$maxx && $y1<$y; $minx++) {
                 $array["$miny-$minx"] = $broj;
                 $broj++;
