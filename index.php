@@ -99,15 +99,37 @@ $array = cyclicTable($_POST['x'], $_POST['y']);
         <div class="output">
             <p class="verticaltext">OUTPUT</p>
         </div>
-        <div class="table">
-            <table>
+        <div>
+            <table class="table">
                 <tbody><?php
-                // $i represents rows in table, $j represents cell
+                // $i represents rows in table, $j represents columns
                 for ($i = 1; $i <= $_POST['y']; $i++) { ?>
                     <tr><?php
-                    for ($j = 1; $j <= $_POST['x']; $j++) { ?>
-                        <td><?php
-                        echo $array["$i-$j"]; ?>
+                    for ($j = 1; $j <= $_POST['x']; $j++) {?>
+                        <td class="td  <?php
+                            $j1 = $j - 1;
+                            $j2 = $j + 1;
+                            $i1 = $i - 1;
+                            $i2 = $i + 1;
+                            if($array["$i-$j1"]-1===$array["$i-$j"]){
+                                echo " td1";
+                            } else if($array["$i-$j2"]-1===$array["$i-$j"]){
+                                echo " td2";
+                            } else if($array["$i1-$j"]-1===$array["$i-$j"]){
+                                echo " td3";
+                            } else if($array["$i2-$j"]-1===$array["$i-$j"]){
+                                echo " td4";
+                            }
+
+
+
+
+
+
+
+                        ?>
+                        "><?php
+                            echo $array["$i-$j"]; ?>
                         </td><?php
                     } ?>
                     </tr><?php

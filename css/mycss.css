@@ -47,17 +47,56 @@ label{
     font-weight: bold;
 }
 
-table {
+.table {
     border-spacing: 0;
 }
 
-td {
+.td {
     text-align: center;
     color: white;
     height: 30px;
     width: 30px;
     border: 1px solid white;
     border-radius: 5px;
-    padding: 1;
+    padding: 1px;
+    position:relative;
 }
 
+
+.td1:before {
+    position:absolute;
+    left:0;
+    content: "-";
+    color: #7AB139;
+    text-align: center;
+}
+
+.td2:before {
+    position:absolute;
+    right:0;
+    content: "-";
+    color: #7AB139;
+    text-align: center;
+}
+
+.td3:before {
+    position:absolute;
+    top:-20%;
+    left:40%;
+    content: "-";
+    color: #7AB139;
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.td4:before {
+    position:absolute;
+    bottom:-20%;
+    left:40%;
+    content: "-";
+    color: #7AB139;
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
