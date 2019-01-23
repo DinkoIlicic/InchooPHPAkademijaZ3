@@ -69,7 +69,9 @@ function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [])
 
 }
 
-$array = cyclicTable($_POST['x'], $_POST['y']);
+if(isset($_POST['x']) && isset($_POST['y'])) {
+    $array = cyclicTable($_POST['x'], $_POST['y']);
+}
 ?>
 
 <!doctype html>
@@ -95,41 +97,43 @@ $array = cyclicTable($_POST['x'], $_POST['y']);
                 <input type="text" name="x" id="x" value="<?php echo $_POST['x']; ?>" required><br/><br/>
                 <input type="submit" value="KREIRAJ TABLICU" id="submit">
             </form>
-        </div>
-        <div class="output">
-            <p class="verticaltext">OUTPUT</p>
-        </div>
-        <div>
-            <table class="table">
-                <tbody><?php
-                // $i represents rows in table, $j represents columns
-                for ($i = 1; $i <= $_POST['y']; $i++) { ?>
-                    <tr><?php
-                    for ($j = 1; $j <= $_POST['x']; $j++) {?>
-                        <td class="td  <?php
-                            $j1 = $j - 1;
-                            $j2 = $j + 1;
-                            $i1 = $i - 1;
-                            $i2 = $i + 1;
-                            if($array["$i-$j1"]-1===$array["$i-$j"]){
-                                echo " td1";
-                            } else if($array["$i-$j2"]-1===$array["$i-$j"]){
-                                echo " td2";
-                            } else if($array["$i1-$j"]-1===$array["$i-$j"]){
-                                echo " td3";
-                            } else if($array["$i2-$j"]-1===$array["$i-$j"]){
-                                echo " td4";
-                            }
-                        ?>
-                        "><?php
-                            echo $array["$i-$j"]; ?>
-                        </td><?php
+        </div><?php
+        if(isset($_POST['x']) && isset($_POST['y'])):   ?>
+            <div class="output">
+                <p class="verticaltext">OUTPUT</p>
+            </div>
+            <div>
+                <table class="table">
+                    <tbody><?php
+                    // $i represents rows in table, $j represents columns
+                    for ($i = 1; $i <= $_POST['y']; $i++) { ?>
+                        <tr><?php
+                        for ($j = 1; $j <= $_POST['x']; $j++) {?>
+                            <td class="td  <?php
+                                $j1 = $j - 1;
+                                $j2 = $j + 1;
+                                $i1 = $i - 1;
+                                $i2 = $i + 1;
+                                if($array["$i-$j1"]-1===$array["$i-$j"]){
+                                    echo " td1";
+                                } else if($array["$i-$j2"]-1===$array["$i-$j"]){
+                                    echo " td2";
+                                } else if($array["$i1-$j"]-1===$array["$i-$j"]){
+                                    echo " td3";
+                                } else if($array["$i2-$j"]-1===$array["$i-$j"]){
+                                    echo " td4";
+                                }
+                            ?>
+                            "><?php
+                                echo $array["$i-$j"]; ?>
+                            </td><?php
+                        } ?>
+                        </tr><?php
                     } ?>
-                    </tr><?php
-                } ?>
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+    <?php endif;?>
     </div>
 </body>
 </html>
