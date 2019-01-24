@@ -76,9 +76,47 @@ function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [])
 
 }
 
-if(isset($_POST['x']) && isset($_POST['y'])) {
+
+if(isset($_POST['x']) && isset($_POST['y'])):
     $array = cyclicTable($_POST['x'], $_POST['y']);
-}
+    function output() {
+        echo "<div class='output'>";
+            echo "<p class='verticaltext'>OUTPUT</p>";
+        echo "</div>";
+    };
+
+    // Here we created function that will create the table for us
+    // We are checking for previous cell and adding line that will show from which cell previous number came
+    // IF statement will go through all 4 possible position the previous cell could come from
+    function createTable($x,$y,$array)
+    {
+        echo "<div>";
+            echo "<table class='table'>";
+                echo "<tbody>";
+                for ($i = 1; $i <= $x; $i++) {
+                    echo "<tr>";
+                    for ($j = 1; $j <= $y; $j++) {
+                        echo "<td class='td ";
+                            if($array[$i . "-" . ($j-1)]-1===$array["$i-$j"]){
+                                echo ' td1';
+                            } else if($array[$i . "-" . ($j+1)]-1===$array["$i-$j"]){
+                                echo ' td2';
+                            } else if($array[$i-1 . "-" . $j]-1===$array["$i-$j"]){
+                                echo ' td3';
+                            } else if($array[$i+1 . "-" . $j]-1===$array["$i-$j"]){
+                                echo ' td4';
+                            }
+                        echo "'>";
+                            echo $array["$i-$j"];
+                        echo "</td>";
+                    }
+                    echo "</tr>";
+                }
+                echo "</tbody>";
+            echo "</table>";
+        echo "</div>";
+    }
+endif;
 ?>
 
 <!doctype html>
@@ -106,41 +144,10 @@ if(isset($_POST['x']) && isset($_POST['y'])) {
             </form>
         </div><?php
         // If POST method is fired, it will show this code
-        if(isset($_POST['x']) && isset($_POST['y'])):   ?>
-            <div class="output">
-                <p class="verticaltext">OUTPUT</p>
-            </div>
-            <div>
-                <table class="table">
-                    <tbody><?php
-                    // $i represents rows in table, $j represents columns
-                    for ($i = 1; $i <= $_POST['y']; $i++) { ?>
-                        <tr><?php
-                        for ($j = 1; $j <= $_POST['x']; $j++) {?>
-                            <td class="td  <?php
-                                // Here we are checking for previous cell and adding line that will show from where
-                                // the current cell came
-                                // IF statement will go through all 4 possible position the previous cell could come from
-
-                                if($array[$i . "-" . ($j-1)]-1===$array["$i-$j"]){
-                                    echo " td1";
-                                } else if($array[$i . "-" . ($j+1)]-1===$array["$i-$j"]){
-                                    echo " td2";
-                                } else if($array[$i-1 . "-" . $j]-1===$array["$i-$j"]){
-                                    echo " td3";
-                                } else if($array[$i+1 . "-" . $j]-1===$array["$i-$j"]){
-                                    echo " td4";
-                                }?>
-                            "><?php
-                                echo $array["$i-$j"]; ?>
-                            </td><?php
-                        } ?>
-                        </tr><?php
-                    } ?>
-                    </tbody>
-                </table>
-            </div>
-    <?php endif;?>
+        if(isset($_POST['x']) && isset($_POST['y'])) {
+            output();
+            createTable($_POST['y'], $_POST['x'], $array);
+        }?>
     </div>
 </body>
 </html>
