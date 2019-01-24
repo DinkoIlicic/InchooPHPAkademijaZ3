@@ -47,6 +47,7 @@ function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [[]])
         $broj++;
     }
 
+    //Reseting maxx,maxy,minx,miny counters
     $maxx = $x;
     $maxy = $y;
     $minx = $x1;
@@ -62,23 +63,16 @@ function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [[]])
         $broj++;
     }
 
-    $nextx = $x - 1;
-    $nexty = $y - 1;
-    $nextx1 = $x1 + 1;
-    $nexty1 = $y1 + 1;
-    $nextb = $broj;
-
-    if ($nextx < $nextx1 || $nexty < $nexty1) {
+    if ($x-1 < $x1+1 || $y-1 < $y1+1) {
         return $array;
     }
 
-    return cyclicTable($nextx, $nexty, $nexty1, $nextx1, $nextb, $array);
-
+    return cyclicTable($x-1, $y-1, $x1+1, $y1+1, $broj, $array);
 }
-
 
 if(isset($_POST['x']) && isset($_POST['y'])):
     $array = cyclicTable($_POST['x'], $_POST['y']);
+
     function output() {
         echo "<div class='output'>";
             echo "<p class='verticaltext'>OUTPUT</p>";
@@ -116,8 +110,7 @@ if(isset($_POST['x']) && isset($_POST['y'])):
             echo "</table>";
         echo "</div>";
     }
-endif;
-?>
+endif;?>
 
 <!doctype html>
 <html lang="en">

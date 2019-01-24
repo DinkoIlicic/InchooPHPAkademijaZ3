@@ -2,6 +2,7 @@ body {
     background-color:  #4c4c4c;
     margin-top: 50px;
 }
+
 div{
     float:left;
 }
@@ -61,7 +62,6 @@ label{
     padding: 1px;
     position:relative;
 }
-
 
 .td1:before {
     position:absolute;
