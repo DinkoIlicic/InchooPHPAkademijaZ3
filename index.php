@@ -120,19 +120,15 @@ if(isset($_POST['x']) && isset($_POST['y'])) {
                             <td class="td  <?php
                                 // Here we are checking for previous cell and adding line that will show from where
                                 // the current cell came
-                                // $j1 shows previous column, $j2 shows next column, $i1 shows previous row, $i2 shows next row
                                 // IF statement will go through all 4 possible position the previous cell could come from
-                                $j1 = $j - 1;
-                                $j2 = $j + 1;
-                                $i1 = $i - 1;
-                                $i2 = $i + 1;
-                                if($array["$i-$j1"]-1===$array["$i-$j"]){
+
+                                if($array[$i . "-" . ($j-1)]-1===$array["$i-$j"]){
                                     echo " td1";
-                                } else if($array["$i-$j2"]-1===$array["$i-$j"]){
+                                } else if($array[$i . "-" . ($j+1)]-1===$array["$i-$j"]){
                                     echo " td2";
-                                } else if($array["$i1-$j"]-1===$array["$i-$j"]){
+                                } else if($array[$i-1 . "-" . $j]-1===$array["$i-$j"]){
                                     echo " td3";
-                                } else if($array["$i2-$j"]-1===$array["$i-$j"]){
+                                } else if($array[$i+1 . "-" . $j]-1===$array["$i-$j"]){
                                     echo " td4";
                                 }?>
                             "><?php
