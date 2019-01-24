@@ -4,10 +4,10 @@
 
 
 // This is a recursive function is taking in 6 parameters, 2 are required and 4 optional
-// It will loop through outer cells and columns first and mark their locations as key ("row-column") and save their value
+// It will loop through outer cells and columns first and mark their locations as key ("column-row") and save their value
 // After the outer is done, it will go deeper till no more cells are unmarked
 // Array will be returned with all cells and their values
-function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [])
+function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [[]])
 {
     $maxx = $x;
     $maxy = $y;
@@ -15,35 +15,35 @@ function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [])
     $miny = $y1;
 
     if ($minx === $maxx || $miny === $maxy) {
-        if ($minx === $miny) {
-            $array["$miny-$minx"] = $broj;
+        if ($miny === $minx) {
+            $array[$minx][$miny] = $broj;
             $broj++;
-            if ($maxx > $maxy) {
-                $minx += 1;
-            } elseif ($maxx < $maxy) {
+            if ($maxy > $maxx) {
                 $miny += 1;
+            } elseif ($maxy < $maxx) {
+                $minx += 1;
             }
         }
-        if ($minx > $miny) {
-            for (; $minx <= $maxx; $minx++) {
-                $array["$miny-$minx"] = $broj;
-                $broj++;
-            }
-        } else if ($minx < $miny) {
+        if ($miny > $minx) {
             for (; $miny <= $maxy; $miny++) {
-                $array["$miny-$minx"] = $broj;
+                 $array[$minx][$miny] = $broj;
+                $broj++;
+            }
+        } else if ($miny < $minx) {
+            for (; $minx <= $maxx; $minx++) {
+                 $array[$minx][$miny] = $broj;
                 $broj++;
             }
         }
-    }
-
-    for (; $minx < $maxx && $y1 < $y; $minx++) {
-        $array["$miny-$minx"] = $broj;
-        $broj++;
     }
 
     for (; $miny < $maxy && $x1 < $x; $miny++) {
-        $array["$miny-$maxx"] = $broj;
+        $array[$minx][$miny] = $broj;
+        $broj++;
+    }
+
+    for (; $minx < $maxx && $y1 < $y; $minx++) {
+        $array[$minx][$maxy] = $broj;
         $broj++;
     }
 
@@ -52,13 +52,13 @@ function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [])
     $minx = $x1;
     $miny = $y1;
 
-    for (; $minx < $maxx && $y1 < $y; $maxx--) {
-        $array["$maxy-$maxx"] = $broj;
+    for (; $miny < $maxy && $x1 < $x; $maxy--) {
+        $array[$maxx][$maxy] = $broj;
         $broj++;
     }
 
-    for (; $miny < $maxy && $x1 < $x; $maxy--) {
-        $array["$maxy-$minx"] = $broj;
+    for (; $minx < $maxx && $y1 < $y; $maxx--) {
+        $array[$maxx][$miny] = $broj;
         $broj++;
     }
 
@@ -72,7 +72,7 @@ function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [])
         return $array;
     }
 
-    return cyclicTable($nextx, $nexty, $nextx1, $nexty1, $nextb, $array);
+    return cyclicTable($nextx, $nexty, $nexty1, $nextx1, $nextb, $array);
 
 }
 
@@ -97,17 +97,17 @@ if(isset($_POST['x']) && isset($_POST['y'])):
                     echo "<tr>";
                     for ($j = 1; $j <= $y; $j++) {
                         echo "<td class='td ";
-                            if($array[$i . "-" . ($j-1)]-1===$array["$i-$j"]){
+                            if($array[$i][($j-1)]-1===$array[$i][$j]){
                                 echo ' td1';
-                            } else if($array[$i . "-" . ($j+1)]-1===$array["$i-$j"]){
+                            } else if($array[$i][($j+1)]-1===$array[$i][$j]){
                                 echo ' td2';
-                            } else if($array[$i-1 . "-" . $j]-1===$array["$i-$j"]){
+                            } else if($array[($i-1)][$j]-1===$array[$i][$j]){
                                 echo ' td3';
-                            } else if($array[$i+1 . "-" . $j]-1===$array["$i-$j"]){
+                            } else if($array[($i+1)][$j]-1===$array[$i][$j]){
                                 echo ' td4';
                             }
                         echo "'>";
-                            echo $array["$i-$j"];
+                            echo $array[$i][$j];
                         echo "</td>";
                     }
                     echo "</tr>";
@@ -136,17 +136,17 @@ endif;
         </div>
         <div class="form">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <label for="y">Broj redaka</label><br/>
-                <input type="text" name="y" id="y" value="<?php if(isset($_POST['y'])) { echo $_POST['y']; }?>" required><br/><br/>
-                <label for="x">Broj stupaca</label><br/>
+                <label for="x">Broj redaka</label><br/>
                 <input type="text" name="x" id="x" value="<?php if(isset($_POST['x'])) { echo $_POST['x']; }?>" required><br/><br/>
+                <label for="y">Broj stupaca</label><br/>
+                <input type="text" name="y" id="y" value="<?php if(isset($_POST['y'])) { echo $_POST['y']; }?>" required><br/><br/>
                 <input type="submit" value="KREIRAJ TABLICU" id="submit">
             </form>
         </div><?php
         // If POST method is fired, it will show this code
         if(isset($_POST['x']) && isset($_POST['y'])) {
             output();
-            createTable($_POST['y'], $_POST['x'], $array);
+            createTable($_POST['x'], $_POST['y'], $array);
         }?>
     </div>
 </body>
