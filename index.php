@@ -4,7 +4,8 @@
 
 
 // This is a recursive function is taking in 6 parameters, 2 are required and 4 optional
-// It will loop through outer cells and columns first and mark their locations as key ("column-row") and save their value
+// All values will be stored in multidimensional array as [row][column]=>value
+// It will loop through outer cells and columns first and mark their locations as key [row][column] and save their value
 // After the outer is done, it will go deeper till no more cells are unmarked
 // Array will be returned with all cells and their values
 function cyclicTable($x, $y, $x1 = 1, $y1 = 1, $broj = 1, $array = [[]])
